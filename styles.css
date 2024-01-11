@@ -24,8 +24,31 @@ body {
     margin: 0 auto;
     padding: 0;
     font-size: 1.10rem;
-    margin-top: 1.4em
+    margin-top: 1.4em;
+}   
 
+.start-btn-container {
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.start-btn {
+    background: whitesmoke;
+    padding: 0.75em;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    background: #DF835E;
+    color: whitesmoke;
+    border: none;
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 0px 0px 15px 1px black; 
+    box-shadow: 0px 0px 15px 1px black;
+    margin: 0 auto;
+    margin-top: 80vh;
 }
 
 h1 {
@@ -54,18 +77,18 @@ box-shadow: 0px 0px 15px 1px black;
 }
 
 .chosen-answer-element {
-    color: whitesmoke;
     background: #DF835E;
-    padding: 0.75em;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 0.75rem;
-    margin-bottom: 1.25em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    -webkit-box-shadow: 0px 0px 15px 1px black; 
-box-shadow: 0px 0px 15px 1px black;
+    color: whitesmoke;
+
+}
+
+.correct-answer {
+    background: #457e43;
+}
+
+.wrong-answer {
+    background: #ef7575;
+    color: whitesmoke;
 }
 
 .btn {
@@ -90,12 +113,14 @@ box-shadow: 0px 0px 15px 1px black;
 .btn:hover,
 .answer-element:hover,
 .btn:focus,
-.answer-element:focus {
+.answer-element:focus,
+.start-btn:hover,
+.start-btn:focus {
     cursor: pointer
 }
 
 .btn:hover,
-.btn:focus {
+.start-btn:hover {
     background: #000000;
     color: white;
 }

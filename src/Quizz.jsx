@@ -1,10 +1,13 @@
 import React, {useRef} from 'react'
-import Question from './Question'
 
 export default function Quizz() {
 
     const [questionsData, setQuestions] = React.useState([])
     const [chosenAnswers, setChosenAnswers] = React.useState([])
+    const [finalAnswersStyling, setFinalAnswers] = React.useState(false)
+    const [restartGame, setRestartGame] = React.useState(0)
+    const [checkAnswersBtnDisplay, setCheckAnswersBtnDisplay] = React.useState({display: "block"})
+    const [restartBtnDisplay, setRestartBtnDisplay] = React.useState({display: "none"})
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -24,6 +27,7 @@ export default function Quizz() {
                 return {
                     ...question,
                     allAnswers: {shuffledAnswers}
+
                 }
             })
             setQuestions(newQuestions)
@@ -33,7 +37,7 @@ export default function Quizz() {
       
 
 
-    }, [])
+    }, [restartGame])
 
     React.useEffect(() => {
         setChosenAnswers(() => {
@@ -45,15 +49,13 @@ export default function Quizz() {
             })
         })
 
+        
     }, [questionsData])
 
-    const [isClicked, setIsClicked] = React.useState(false)
 
-
-    const questionsElement = questionsData.map(questionInfo => {
-        const {question, correctAnswer, incorrectAnswers, id, allAnswers} = questionInfo
-
-
+    const questionElement = questionsData.map(questionInfo => {
+        const {question, correctAnswer, incorrectAnswers, id, allAnswers} = questionInfo 
+        
         const answersElement = allAnswers.shuffledAnswers.map((answer,index) => {
             let isCorrect = ""
             if (answer === correctAnswer) {
@@ -62,33 +64,39 @@ export default function Quizz() {
                 isCorrect = "false"
             }
 
-            function flipIsClicked() {
-                setIsClicked(oldValue => !oldValue)
+            let className = "answer-element"
+
+            for (let i = 0; i < chosenAnswers.length; i++) {
+                if (answer === correctAnswer && finalAnswersStyling) {
+                    className = "answer-element correct-answer chosen-answer-element"
+                } else if (chosenAnswers[i].chosenAnswer === answer && answer !== correctAnswer && finalAnswersStyling ) {
+                    className = "answer-element wrong-answer"
+                }
+                else if (chosenAnswers[i].chosenAnswer === answer) {
+                    className = "answer-element chosen-answer-element"
+                } 
             }
 
-            isCorrect 
-                return <p 
-                        id={id}
-                        value={answer}
-                        index={index}
-                        onClick={(ev) => {
-                            ev.stopPropagation();
-                            handleClick(ev);    // INVOCATION
-                           flipIsClicked();
-                          }}
-                        iscorrect={isCorrect}
-                        className={isClicked ? "chosen-answer-element" : "answer-element"}
-                        >{answer}</p>
-        })
 
-        return  ( 
-            <div className="question-container">
-                <div className="question-text">{question.text}</div>
-                <div className="question-answers">{answersElement}</div>
-            </div>
-        )
+            return <p 
+            id={id}
+            value={answer}
+            index={index}
+            onClick={handleClick}
+            iscorrect={isCorrect}
+            className={className}
+           >
+            {answer}
+            </p>
+            })
+
+    return (
+                <div className="question-container">
+                        <div className="question-text">{question.text}</div>
+                        <div className="question-answers">{answersElement}</div>
+                </div>  
+            )
     })
-
   
     function handleClick(event) {
         const index = event.target.getAttribute('index');
@@ -96,8 +104,6 @@ export default function Quizz() {
         const id = event.target.id
         const value = event.target.getAttribute('value')
         
-        
-       
 
         setChosenAnswers(oldArray => {
             return oldArray.map(question => {
@@ -112,11 +118,11 @@ export default function Quizz() {
             })
         })
         
-        console.log(chosenAnswers)
 
     }
 
-    function handleBtnClick() {
+
+    function handleCheckAnswersBtnClick() {
         console.log(questionsData[0].correctAnswer)
             for (let i = 0; i < questionsData.length; i++) {
                if (questionsData[i].correctAnswer === chosenAnswers[i].chosenAnswer) {
@@ -126,13 +132,30 @@ export default function Quizz() {
                }
 
             }
+        setFinalAnswers(oldValue => !oldValue)
+        setCheckAnswersBtnDisplay({display: "none"})
+        setRestartBtnDisplay({display: "block"})
     }
+
+
+    function handleRestartBtnClick() {
+        setRestartGame(oldValue => oldValue + 1)
+        setCheckAnswersBtnDisplay({display: "block"})
+        setRestartBtnDisplay({display: "none"})
+        setFinalAnswers(false)
+    }
+
+
+    
+
+   
 
     return (
         <div>
-            {questionsElement}
+            {questionElement}
             <div className="btn-div">
-            <button className="btn" onClick={handleBtnClick}>Check answers!</button>
+            <button className="btn" onClick={handleCheckAnswersBtnClick} style={checkAnswersBtnDisplay}>Check answers!</button>
+            <button className="btn" onClick={handleRestartBtnClick} style={restartBtnDisplay}>New quizz!</button>
             </div>
         </div>
 
