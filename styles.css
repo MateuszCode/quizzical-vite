@@ -1,3 +1,148 @@
 /* input {
     visibility: hidden;
 } */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: rgba(96, 96, 96, 0.462);
+    background-image: url("./images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: overlay;
+    color: white;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.main-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 1.10rem;
+    margin-top: 1.4em
+
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 1em;
+}
+
+.question-text {
+    margin: 1.10em 0;
+}
+
+.answer-element {
+    background: whitesmoke;
+    padding: 0.75em;
+    border-radius: 8px;
+    color: #DF835E;
+    text-align: center;
+    font-size: 0.75rem;
+    margin-bottom: 1.25em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 0px 0px 15px 1px black; 
+box-shadow: 0px 0px 15px 1px black;
+}
+
+.chosen-answer-element {
+    color: whitesmoke;
+    background: #DF835E;
+    padding: 0.75em;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.75rem;
+    margin-bottom: 1.25em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 0px 0px 15px 1px black; 
+box-shadow: 0px 0px 15px 1px black;
+}
+
+.btn {
+    background: whitesmoke;
+    padding: 0.75em;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 1em;
+    background: #DF835E;
+    color: whitesmoke;
+    border: none;
+    width: 100%;
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 0px 0px 15px 1px black; 
+box-shadow: 0px 0px 15px 1px black;
+    
+}
+
+.btn:hover,
+.answer-element:hover,
+.btn:focus,
+.answer-element:focus {
+    cursor: pointer
+}
+
+.btn:hover,
+.btn:focus {
+    background: #000000;
+    color: white;
+}
+
+/* .answer-element:hover,
+.answer-element:focus {
+    background: #DF835E;
+    color: whitesmoke;
+} */
+
+@media (min-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .main-container {
+        font-size: 1.30rem;
+    }
+    
+    
+    .question-text {
+        margin: 0.8em 0;
+    }
+    
+    .answer-element {
+        width: 20%;
+        font-size: 1rem;
+        margin-bottom: 1em;
+      
+    }
+
+    .question-answers {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .btn-div {
+        width: 100%;
+        display: flex;
+
+    }
+
+    .btn {
+        margin: 0 auto;
+        width: 40%;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        font-size: 1.25rem;
+    }
+}

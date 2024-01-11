@@ -3,3 +3,4 @@ export default function StartingPage() {
         <p>Hello</p>
     )
 }
+
