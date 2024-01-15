@@ -146,16 +146,14 @@ export default function Quizz() {
     }
 
 
-    
-
    
 
     return (
         <div>
             {questionElement}
             <div className="btn-div">
-            <button className="btn" onClick={handleCheckAnswersBtnClick} style={checkAnswersBtnDisplay}>Check answers!</button>
-            <button className="btn" onClick={handleRestartBtnClick} style={restartBtnDisplay}>New quizz!</button>
+            <button className="btn game-btn" onClick={handleCheckAnswersBtnClick} style={checkAnswersBtnDisplay}>Check answers!</button>
+            <button className="btn game-btn" onClick={handleRestartBtnClick} style={restartBtnDisplay}>New quizz!</button>
             </div>
         </div>
 

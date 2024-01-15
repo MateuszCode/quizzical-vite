@@ -14,7 +14,7 @@ export default function App() {
     return (
         <div className="main-container">
             <div style={buttonDisplay}>
-                <button onClick={handleClick} className="start-btn">Start the quizz</button>
+                <button onClick={handleClick} className="start-btn btn">Start the quizz</button>
             </div>
             <div style={quizzDisplay}>
                 <Quizz /> 
