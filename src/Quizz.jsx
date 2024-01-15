@@ -31,12 +31,7 @@ export default function Quizz() {
                 }
             })
             setQuestions(newQuestions)
-
-
         })
-      
-
-
     }, [restartGame])
 
     React.useEffect(() => {
@@ -48,8 +43,6 @@ export default function Quizz() {
                 }
             })
         })
-
-        
     }, [questionsData])
 
 
@@ -57,50 +50,38 @@ export default function Quizz() {
         const {question, correctAnswer, incorrectAnswers, id, allAnswers} = questionInfo 
         
         const answersElement = allAnswers.shuffledAnswers.map((answer,index) => {
-            let isCorrect = ""
-            if (answer === correctAnswer) {
-                isCorrect = "true"
-            } else {
-                isCorrect = "false"
-            }
+                let className = "answer-element"
 
-            let className = "answer-element"
-
-            for (let i = 0; i < chosenAnswers.length; i++) {
-                if (answer === correctAnswer && finalAnswersStyling) {
-                    className = "answer-element correct-answer chosen-answer-element"
-                } else if (chosenAnswers[i].chosenAnswer === answer && answer !== correctAnswer && finalAnswersStyling ) {
-                    className = "answer-element wrong-answer"
+                for (let i = 0; i < chosenAnswers.length; i++) {
+                    if (answer === correctAnswer && finalAnswersStyling) {
+                        className = "answer-element correct-answer chosen-answer-element"
+                    } else if (chosenAnswers[i].chosenAnswer === answer && answer !== correctAnswer && finalAnswersStyling ) {
+                        className = "answer-element wrong-answer"
+                    }
+                    else if (chosenAnswers[i].chosenAnswer === answer) {
+                        className = "answer-element chosen-answer-element"
+                    } 
                 }
-                else if (chosenAnswers[i].chosenAnswer === answer) {
-                    className = "answer-element chosen-answer-element"
-                } 
-            }
 
+                return <p
+                        id={id}
+                        value={answer}
+                        onClick={handleClick}
+                        className={className}
+                        >
+                        {answer}
+                        </p>
+                })
 
-            return <p 
-            id={id}
-            value={answer}
-            index={index}
-            onClick={handleClick}
-            iscorrect={isCorrect}
-            className={className}
-           >
-            {answer}
-            </p>
-            })
-
-    return (
-                <div className="question-container">
-                        <div className="question-text">{question.text}</div>
-                        <div className="question-answers">{answersElement}</div>
-                </div>  
-            )
+        return (
+                    <div className="question-container">
+                            <div className="question-text">{question.text}</div>
+                            <div className="question-answers">{answersElement}</div>
+                    </div>  
+                )
     })
   
     function handleClick(event) {
-        const index = event.target.getAttribute('index');
-        const isCorrect = event.target.getAttribute('iscorrect');
         const id = event.target.id
         const value = event.target.getAttribute('value')
         
@@ -121,22 +102,11 @@ export default function Quizz() {
 
     }
 
-
     function handleCheckAnswersBtnClick() {
-        console.log(questionsData[0].correctAnswer)
-            for (let i = 0; i < questionsData.length; i++) {
-               if (questionsData[i].correctAnswer === chosenAnswers[i].chosenAnswer) {
-                console.log("correctAnswer!")
-               } else if (questionsData[i].correctAnswer != chosenAnswers[i].chosenAnswer) {
-                console.log("wrongAnswer!")
-               }
-
-            }
         setFinalAnswers(oldValue => !oldValue)
         setCheckAnswersBtnDisplay({display: "none"})
         setRestartBtnDisplay({display: "block"})
     }
-
 
     function handleRestartBtnClick() {
         setRestartGame(oldValue => oldValue + 1)
@@ -144,9 +114,6 @@ export default function Quizz() {
         setRestartBtnDisplay({display: "none"})
         setFinalAnswers(false)
     }
-
-
-   
 
     return (
         <div>
@@ -156,6 +123,5 @@ export default function Quizz() {
             <button className="btn game-btn" onClick={handleRestartBtnClick} style={restartBtnDisplay}>New quizz!</button>
             </div>
         </div>
-
     )
 }
