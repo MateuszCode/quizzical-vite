@@ -71,7 +71,8 @@ body {
     margin-bottom: 1em;
     background: #DF835E;
     color: whitesmoke;
-    border: none;  
+    border: none;
+  
 }
 
 .start-btn {
@@ -132,6 +133,5 @@ body {
 
     .start-btn {
         width: 25%;
-        margin-top: 80vh;
     }
 }
