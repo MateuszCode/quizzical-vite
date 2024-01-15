@@ -45,7 +45,6 @@ export default function Quizz() {
         })
     }, [questionsData])
 
-
     const questionElement = questionsData.map(questionInfo => {
         const {question, correctAnswer, incorrectAnswers, id, allAnswers} = questionInfo 
         
@@ -84,7 +83,6 @@ export default function Quizz() {
     function handleClick(event) {
         const id = event.target.id
         const value = event.target.getAttribute('value')
-        
 
         setChosenAnswers(oldArray => {
             return oldArray.map(question => {
@@ -98,8 +96,6 @@ export default function Quizz() {
                 }
             })
         })
-        
-
     }
 
     function handleCheckAnswersBtnClick() {
