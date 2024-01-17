@@ -65,7 +65,7 @@ export default function Quizz() {
                 return <p
                         id={id}
                         value={answer}
-                        onClick={handleClick}
+                        onClick={finalAnswersStyling === false ? handleClick : ""}
                         className={className}
                         >
                         {answer}
