@@ -6,8 +6,6 @@ export default function Quizz() {
     const [chosenAnswers, setChosenAnswers] = React.useState([])
     const [finalAnswersStyling, setFinalAnswers] = React.useState(false)
     const [restartGame, setRestartGame] = React.useState(0)
-    const [checkAnswersBtnDisplay, setCheckAnswersBtnDisplay] = React.useState({display: "block"})
-    const [restartBtnDisplay, setRestartBtnDisplay] = React.useState({display: "none"})
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
