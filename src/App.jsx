@@ -3,22 +3,15 @@ import Quizz from './Quizz.jsx'
 
 export default function App() {
 
-    const [quizzDisplay, setQuizzDisplay] = React.useState({display: "none"})
-    const [buttonDisplay, setButtonDisplay] = React.useState({display: "block"})
-
-    function handleClick() {
-        setButtonDisplay({display: "none"})
-        setQuizzDisplay({display: "block"})
-    }
+    const [quizzDisplay, setQuizzDisplay] = React.useState(false)
 
     return (
         <div className="main-container">
-            <div style={buttonDisplay}>
-                <button onClick={handleClick} className="start-btn btn">Start the quizz</button>
-            </div>
-            <div style={quizzDisplay}>
-                <Quizz /> 
-            </div>
+                {quizzDisplay ?
+                <Quizz />
+                :
+                <button onClick={() => setQuizzDisplay(true)} className="start-btn btn">Start the quizz</button>
+                 }
         </div>
     )
 }
