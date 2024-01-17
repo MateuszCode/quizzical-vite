@@ -44,9 +44,9 @@ export default function Quizz() {
     }, [questionsData])
 
     const questionElement = questionsData.map(questionInfo => {
-        const {question, correctAnswer, incorrectAnswers, id, allAnswers} = questionInfo 
+        const {question, correctAnswer, id, allAnswers} = questionInfo 
         
-        const answersElement = allAnswers.shuffledAnswers.map((answer,index) => {
+        const answersElement = allAnswers.shuffledAnswers.map((answer) => {
                 let className = "answer-element"
 
                 for (let i = 0; i < chosenAnswers.length; i++) {
