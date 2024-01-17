@@ -100,14 +100,10 @@ export default function Quizz() {
 
     function handleCheckAnswersBtnClick() {
         setFinalAnswers(oldValue => !oldValue)
-        setCheckAnswersBtnDisplay({display: "none"})
-        setRestartBtnDisplay({display: "block"})
     }
 
     function handleRestartBtnClick() {
         setRestartGame(oldValue => oldValue + 1)
-        setCheckAnswersBtnDisplay({display: "block"})
-        setRestartBtnDisplay({display: "none"})
         setFinalAnswers(false)
     }
 
@@ -115,8 +111,11 @@ export default function Quizz() {
         <div>
             {questionElement}
             <div className="btn-div">
-            <button className="btn game-btn" onClick={handleCheckAnswersBtnClick} style={checkAnswersBtnDisplay}>Check answers!</button>
-            <button className="btn game-btn" onClick={handleRestartBtnClick} style={restartBtnDisplay}>New quizz!</button>
+            {finalAnswersStyling ? 
+            <button className="btn game-btn" onClick={handleRestartBtnClick}>New quizz!</button>
+            : 
+            <button className="btn game-btn" onClick={handleCheckAnswersBtnClick}>Check answers!</button>
+            }
             </div>
         </div>
     )
