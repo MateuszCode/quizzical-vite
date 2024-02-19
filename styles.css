@@ -3,6 +3,11 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 
+html {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -13,6 +18,10 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-blend-mode: overlay;
+    min-height: 100vh;
+    height: 100%;
+    overflow-x: hidden;
+
 }
 
 .main-container {
@@ -20,8 +29,12 @@ body {
     margin: 0 auto;
     padding: 0;
     font-size: 1.10rem;
-    margin-top: 1.4em;
 }   
+
+
+.questions-container {
+    margin-top: 1.5em;
+}
 
 .question-text {
     margin: 1.10em 0;
@@ -84,6 +97,7 @@ body {
     right: 0;
     margin: auto;
     padding: 0;
+    box-sizing: content-box;
 }
 
 .start-btn,

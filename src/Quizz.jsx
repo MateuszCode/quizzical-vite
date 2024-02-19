@@ -118,7 +118,9 @@ export default function Quizz() {
              <h1>Loading . . .</h1>
         </div> :
         <div>
+            <div className="questions-container">
             {questionElement}
+            </div>
             <div className="btn-div">
             {finalAnswersStyling ? 
             <button className="btn game-btn" onClick={handleRestartBtnClick}>New quizz!</button>
