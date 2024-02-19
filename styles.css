@@ -75,10 +75,20 @@ body {
   
 }
 
+.loading,
 .start-btn {
-    margin: 0 auto;
-    margin-top: 50vh;
-    width: 50%;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.start-btn,
+.loading {
+    width: 40%;
+    height: 8%;
 }
 
 .game-btn {
@@ -97,6 +107,15 @@ body {
  {
     background: #000000;
     color: white;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.6rem;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #DF835E;
 }
 
 @media (min-width: 600px) {
@@ -119,9 +138,19 @@ body {
       
     }
 
-    .btn {
+    .btn  {
         font-size: 1.25rem;
 
+    }
+
+    .loading {
+        font-size: 0.9rem;
+    }
+
+    .start-btn,
+    .loading {
+    width: 20%;
+    height: 8%;
     }
 
     .game-btn {
@@ -131,7 +160,5 @@ body {
         margin-bottom: 1.5em;
     }
 
-    .start-btn {
-        width: 25%;
-    }
+
 }

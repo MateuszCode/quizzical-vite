@@ -6,6 +6,8 @@ export default function Quizz() {
     const [chosenAnswers, setChosenAnswers] = React.useState([])
     const [finalAnswersStyling, setFinalAnswers] = React.useState(false)
     const [restartGame, setRestartGame] = React.useState(0)
+    const [status, setStatus] = React.useState(null)
+    const [error, setError] = React.useState(null)
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -15,9 +17,11 @@ export default function Quizz() {
       }
 
     React.useEffect(() => {
+        setStatus("loading")
         fetch('https://the-trivia-api.com/v2/questions/')
         .then(response => response.json())
         .then(data => {
+            setError(null)
             const fiveQuestions = data.slice(0,5)
             const newQuestions = fiveQuestions.map(question => {
                 const shuffledAnswers = [...question.incorrectAnswers, question.correctAnswer]
@@ -29,6 +33,12 @@ export default function Quizz() {
                 }
             })
             setQuestions(newQuestions)
+        })
+        .catch(err => {
+            setError(err)
+        })
+        .finally(() => {
+            setStatus("idle")
         })
     }, [restartGame])
 
@@ -106,6 +116,10 @@ export default function Quizz() {
     }
 
     return (
+        status === "loading" ? 
+        <div className="loading">
+             <h1>Loading . . .</h1>
+        </div> :
         <div>
             {questionElement}
             <div className="btn-div">
@@ -114,7 +128,7 @@ export default function Quizz() {
             : 
             <button className="btn game-btn" onClick={handleCheckAnswersBtnClick}>Check answers!</button>
             }
-            </div>
+            </div> 
         </div>
     )
 }
