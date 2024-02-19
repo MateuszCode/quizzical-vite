@@ -1,4 +1,5 @@
-import React, {useRef} from 'react'
+import React from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Quizz() {
 
@@ -8,6 +9,7 @@ export default function Quizz() {
     const [restartGame, setRestartGame] = React.useState(0)
     const [status, setStatus] = React.useState(null)
     const [error, setError] = React.useState(null)
+
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -75,13 +77,14 @@ export default function Quizz() {
                         value={answer}
                         onClick={finalAnswersStyling === false ? handleClick : ""}
                         className={className}
+                        key={answer + id}
                         >
                         {answer}
                         </p>
                 })
 
         return (
-                    <div className="question-container">
+                    <div className="question-container" key={uuidv4()}>
                             <div className="question-text">{question.text}</div>
                             <div className="question-answers">{answersElement}</div>
                     </div>  
